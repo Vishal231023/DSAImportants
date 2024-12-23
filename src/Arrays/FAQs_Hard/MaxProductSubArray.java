@@ -2,7 +2,7 @@ package Arrays.FAQs_Hard;
 
 public class MaxProductSubArray {
     public static void main(String[] args) {
-        int arr [] = {2,3,-2,4};
+        int arr [] = {2,3,-2,12};
 
         int ans = maxSumBetterApproach(arr);
         System.out.println(ans);
