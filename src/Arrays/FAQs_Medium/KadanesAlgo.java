@@ -3,7 +3,7 @@ package Arrays.FAQs_Medium;
 public class KadanesAlgo {
 
     public static void main(String[] args) {
-        int [] arr = {2,3,5,-2,7,-4};
+        int [] arr = {2,3,-2,4};
 
         int maxSum = Integer.MIN_VALUE;
 

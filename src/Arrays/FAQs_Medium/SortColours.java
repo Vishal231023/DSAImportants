@@ -1,6 +1,7 @@
 package Arrays.FAQs_Medium;
 
 public class SortColours {
+
     public static void main(String[] args) {
         int [] arr = {1,0,1,2,2,0};
 
@@ -50,6 +51,7 @@ public class SortColours {
 
     public static int [] sortColorsOptimalSoln(int[] nums) {
 
+        //Dutch-national flag algorithm
         // TC: O(N)
 
         //SC: O(1), as no extra space is used
