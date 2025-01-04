@@ -1,43 +1,41 @@
 package BinarySearch.AnswersBasedQuestions;
 
-public class SmallestDivisor {
+public class KokoEatingBananas {
     public static void main(String[] args) {
-        int [] nums = {8,4,2,3};
-        int limit = 10;
+        int nums [] = {25,12,8,14,19};
+        int n = 5;
+        int h =5;
 
-        int ans = getSmallestDivisorUsingBinarySearch(nums,limit);
+        int ans = getMinimumBananasKokoEats(nums,h);
         System.out.println(ans);
     }
 
-    private static int getSmallestDivisorUsingBinarySearch(int[] nums, int limit) {
-
-        // TC: O(log n) * (N) , where log n id for searching  mid, using binary search and (N) for getting the sum
-        //SC: O(1)
+    private static int getMinimumBananasKokoEats(int[] nums, int h) {
         int max = Integer.MIN_VALUE;
         for(int i =0;i<nums.length;i++){
             max = Math.max(max,nums[i]);
         }
-
         int low = 1;
-        int high = max;
+        int high  = max;
         int ans = -1;
 
         while(low <= high){
             int mid = low + (high-low)/2;
 
-            if(getSumOfArrayIntermediateFunc(nums,mid) <= limit){
+            if(funcGetPerHourBanana(nums,mid) <= h){
                 ans = mid;
-                high = mid - 1;
+                high = mid -1;
+
             }
-            else{
-                low = mid + 1;
+
+            else {
+               low = mid +1;
             }
         }
         return ans;
     }
 
-    private static int getSumOfArrayIntermediateFunc(int[] nums, int mid) {
-
+    private static int funcGetPerHourBanana(int[] nums, int mid) {
         int n = nums.length;
         int sum =0;
 
