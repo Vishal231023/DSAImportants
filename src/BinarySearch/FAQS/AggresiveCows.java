@@ -17,6 +17,7 @@ public class AggresiveCows {
 
     private static int aggresiveCowsSolutionUsingBinarySearch(int[] nums, int n, int k) {
         Arrays.sort(nums);
+
         int low = 1;
         int high = nums[n-1] - nums[0];
 
@@ -24,10 +25,11 @@ public class AggresiveCows {
             int mid = low + (high - low)/2;
 
             if(canWeApplyCows(mid,k,nums) == true){
-                low = mid + 1;
+                low = mid +1;
+
 
             }
-            else {
+            else{
                 high = mid -1;
             }
         }
@@ -36,17 +38,18 @@ public class AggresiveCows {
 
     private static boolean canWeApplyCows(int mid, int k, int[] nums) {
         int NumberOfCows = 1;
-        int prev = nums [0];
+        int prev = nums[0];
 
-        for(int i = 1; i<nums.length;i++){
+        for(int i = 1;i<nums.length;i++){
             if(nums[i] - prev >= mid){
-                NumberOfCows++;
-
+                NumberOfCows ++;
                 prev = nums[i];
             }
-            if(NumberOfCows >= k) return  true;
+
 
         }
-        return false;
+
+        return NumberOfCows>= k;
+
     }
 }
