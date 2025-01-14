@@ -2,46 +2,49 @@ package BinarySearch.AnswersBasedQuestions;
 
 public class KokoEatingBananas {
     public static void main(String[] args) {
-        int nums [] = {25,12,8,14,19};
+        int nums[] = {25, 12, 8, 14, 19};
         int n = 5;
-        int h =5;
+        int h = 5;
 
-        int ans = getMinimumBananasKokoEats(nums,h);
+
+
+        int ans = getMinimumBananasKokoEats(nums, h);
         System.out.println(ans);
     }
 
     private static int getMinimumBananasKokoEats(int[] nums, int h) {
-        int max = Integer.MIN_VALUE;
-        for(int i =0;i<nums.length;i++){
-            max = Math.max(max,nums[i]);
-        }
+
         int low = 1;
-        int high  = max;
-        int ans = -1;
+        int n = nums.length;
+        int high = -1;
 
-        while(low <= high){
-            int mid = low + (high-low)/2;
+        for (int a : nums) {
+            high = Math.max(high, a);
+        }
 
-            if(funcGetPerHourBanana(nums,mid) <= h){
-                ans = mid;
-                high = mid -1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
 
-            }
-
-            else {
-               low = mid +1;
+            if (funcGetPerHourBanana(nums, mid) <= h) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
             }
         }
-        return ans;
+        return low;
     }
 
-    private static int funcGetPerHourBanana(int[] nums, int mid) {
-        int n = nums.length;
-        int sum =0;
 
-        for(int i = 0; i < n; i++){
-            sum +=  Math.ceil((double) nums[i]/(double) mid);
+    private static double funcGetPerHourBanana(int[] nums, int mid) {
+
+        int n = nums.length;
+
+        double sum = 0;
+
+        for (int i = 0; i < n; i++) {
+            sum += Math.ceil((double) nums[i] /(double) mid);
         }
         return sum;
+
     }
 }
