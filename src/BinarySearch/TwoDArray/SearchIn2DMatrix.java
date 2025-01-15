@@ -67,7 +67,7 @@ public class SearchIn2DMatrix {
             if(nums[mid] == target){
                 return true;
             }
-            else if(mid < target){
+            else if(nums[mid] < target){
                 low = mid + 1;
             }
             else {
