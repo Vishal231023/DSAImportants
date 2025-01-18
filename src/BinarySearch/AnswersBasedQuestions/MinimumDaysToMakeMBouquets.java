@@ -2,8 +2,8 @@ package BinarySearch.AnswersBasedQuestions;
 
 public class MinimumDaysToMakeMBouquets {
     public static void main(String[] args) {
-        int n = 5;
-        int [] nums = {1,10,3,10,2};
+        int n = 8;
+        int [] nums = {7,7,7,7,13,11,12,7};
         int m = 3;
         int k = 2;
 
@@ -13,53 +13,49 @@ public class MinimumDaysToMakeMBouquets {
 
     private static int getMinimumDays(int[] nums, int m, int k,int n) {
 
-       long val = m* k;
+        long val = k * m;
 
-       if(val > n){
-           return  -1;
-       }
-
-        int min = Integer.MAX_VALUE;
-        int max = Integer.MIN_VALUE;
-        for(int i = 0; i< n ;i++){
-            min = Math.min(min,nums[i]);
-            max = Math.max(max,nums[i]);
+        if(val > n){
+            return -1;
         }
 
-        int low = min;
-        int high = max;
-        int ans = -1;
+        int low = Integer.MAX_VALUE;
+        int high = Integer.MIN_VALUE;
+
+        for(int i = 0;i<n;i++){
+            low = Math.min(low,nums[i]);
+            high = Math.max(high,nums[i]);
+        }
 
         while(low <= high){
-            int mid = low + (high - low)/2;
+            int mid = (low + high)/2;
 
-            if(PossibleBouquets(mid,nums,m,k,n) ){
-                ans = mid;
-                high = mid-1;
+            if(possibleBouquets(mid,nums,m,k,n)){
+                high = mid -1;
             }
-            else {
-                low = mid + 1;
-
+            else{
+                low = mid +1;
             }
         }
-        return ans;
+        return low;
+
     }
 
-    private static Boolean PossibleBouquets(int mid, int[] nums, int m, int k, int n) {
-        int count = 0;
-        int noOfBouquets = 0;
+    private static Boolean possibleBouquets(int mid, int[] nums, int m, int k, int n) {
 
-        for(int i =0 ;i < n;i++){
+        int count = 0;
+        int numberOfBouquets = 0;
+
+        for(int i =0;i<n;i++){
             if(nums[i] <= mid){
                 count++;
             }
             else{
-                noOfBouquets += count/k;
-                count =0;
-
+                numberOfBouquets += count/k;
+                count=0;
             }
         }
-        noOfBouquets += count/k;
-        return noOfBouquets >=m;
+        numberOfBouquets += count/k;
+        return numberOfBouquets >= m;
     }
 }
