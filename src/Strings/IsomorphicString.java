@@ -11,6 +11,7 @@ public class IsomorphicString {
             if(m1[s.charAt(i)]!= m2[t.charAt(i)]){
                 return false;
 
+
             }
 
             m1[s.charAt(i)] = i+1;
