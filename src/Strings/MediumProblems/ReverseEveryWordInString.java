@@ -7,12 +7,12 @@ public class ReverseEveryWordInString {
     public static void main(String[] args) {
 
         String s = "the sky is blue";
-        String ans = reverseWords(s);
+        String ans = reverseWordsBruteForce(s);
         System.out.println(ans);
 
     }
 
-    public  static String reverseWords(String s) {
+    public  static String reverseWordsBruteForce(String s) {
         //Tc: O(n) + O(n)
         //Sc: O(n)
 
