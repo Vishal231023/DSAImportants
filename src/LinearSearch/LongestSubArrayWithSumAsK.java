@@ -9,6 +9,41 @@ public class LongestSubArrayWithSumAsK {
 
         int ans = longestSubArray(arr,k);
         System.out.println(ans);
+
+        int ans1 = longestSubArrayTwoPointerApproach(arr,k);
+        System.out.println(ans1);
+    }
+
+    private static int longestSubArrayTwoPointerApproach(int[] arr, int k) {
+        int left =0;
+        int right =0;
+        int sum=0;
+        int maxLen = 0;
+
+        int n = arr.length;
+
+        while(right < n){
+            if(right < n){
+                sum += arr[right];
+            }
+
+            if(sum == k){
+                int len = right - left +1 ;
+                maxLen = Math.max(maxLen,len);
+            }
+
+            while(left <= right && sum > k){
+                sum -= arr[left];
+                left++;
+            }
+
+
+            right++;
+
+
+
+        }
+        return maxLen;
     }
 
     private static int longestSubArray(int[] arr, int k) {
