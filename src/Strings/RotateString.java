@@ -28,5 +28,8 @@ public class RotateString {
 
         boolean ans = rotateString.rotateString(s,goal);
         System.out.println(ans);
+
+
+
     }
 }
