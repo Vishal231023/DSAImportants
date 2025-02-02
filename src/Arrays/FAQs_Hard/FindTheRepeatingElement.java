@@ -37,11 +37,14 @@ public class FindTheRepeatingElement {
         }
 
         long val1 = S - Sn;
+        System.out.println(val1);
         long val2 = S2 - S2n;
+        System.out.println(val2);
 
         val2 = val2/val1;
 
         long x = ( val1 + val2 )/2;
+        System.out.println((int) x);
 
         long y = x - val1;
 
