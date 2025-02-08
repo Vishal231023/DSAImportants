@@ -18,53 +18,54 @@ public class FourSum {
 
         //TC: O(N^2)
         //SC:O(no of quadreplets)
+//        For k-Sum, we iterate up to n - (k - 1) because:
+//	•	We need k elements.
+//	•	The outermost loop picks the first element.
+//	•	The remaining (k-1) elements are found using inner loops or two-pointer techniques.
 
-        Arrays.sort(nums);
+       Arrays.sort(nums);
 
-        List<List<Integer>> ans = new ArrayList<>();
+       int n = nums.length;
+       List<List<Integer>> ans = new ArrayList<>();
 
-        int n = nums.length;
+       for(int i=0;i<n-3;i++){
+           if(i>0 && nums[i] == nums[i-1]) continue;
 
-        for (int i = 0; i < n - 3; i++) {
+           for(int j= i+1;j<n-2;j++){
+               if(j!=i+1 && nums[j] == nums[j-1]) continue;
 
+               int k = j+1;
+               int l = n-1;
 
-            if (i > 0 && nums[i] == nums[i - 1]) continue;
+               while(k<l){
+                   int sum = nums[i] + nums[j] + nums[k] + nums[l];
 
-            for (int j = i + 1; j < n - 2; j++) {
-                if (j != i + 1 && nums[j] == nums[j - 1]) continue;
-                int k = j + 1;
-                int l = n - 1;
+                   if(sum ==0 ){
+                       List<Integer> fourSum = new ArrayList<>();
 
-                while (k < l) {
+                       fourSum.add(nums[i]);
+                       fourSum.add(nums[j]);
+                       fourSum.add(nums[k]);
+                       fourSum.add(nums[l]);
+                       ans.add(fourSum);
+                       k++;
+                       l--;
 
-                    long sum = (long) nums[i] + nums[j] + nums[k] + nums[l];
+                       while(k<l && nums[k] == nums[k-1]) k++;
+                       while(l>k && nums[l] == nums[l+1])l--;
 
-                    if (sum == target) {
-                        List<Integer> list = new ArrayList<>();
-                        list.add(nums[i]);
-                        list.add(nums[j]);
-                        list.add(nums[k]);
-                        list.add(nums[l]);
-
-                        ans.add(list);
-
-                        k++;
-                        l--;
-
-                        while (k < l && nums[k] == nums[k - 1]) k++;
-                        while (k < l && nums[l] == nums[l + 1]) l--;
-                    } else if (sum < target) {
-                        k++;
-                    } else {
-                        l--;
-                    }
-                }
-            }
-
-
-        }
+                   }
+                   else if(sum <0){
+                       k++;
+                   }
+                   else{
+                       l--;
+                   }
+               }
+           }
 
 
-        return ans;
+       }
+       return ans;
     }
 }
